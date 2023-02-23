@@ -12,12 +12,18 @@ public class Movimiento : MonoBehaviour
     private Vector3 offset;
     private float valx;
     private float valz;
+    
+    //Movimiento del jugador
+    private Rigidbody rb; 
+    private Vector3 direccionActual;
     // Start is called before the first frame update
     void Start()
     {
         offset = camara.transform.position;
         valx = 0.0f;
         valz = 0.0f;
+        rb = GetComponent<Rigidbody>();
+        direccionActual = Vector3.forward;
         SueloInicial();
     }
 
@@ -33,6 +39,22 @@ public class Movimiento : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        camara.transform.position = this.transform.position + offset;
+
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            if(direccionActual == Vector3.forward)
+            {
+                direccionActual = Vector3.right;
+            }
+            else
+            {
+                direccionActual = Vector3.forward;
+            }
+        }
+
+        float tiempo = velocidad*Time.deltaTime;
         
+        rb.transform.Translate(direccionActual*tiempo);
     }
 }

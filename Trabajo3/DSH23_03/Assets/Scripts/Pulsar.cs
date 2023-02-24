@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Pulsar : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class Pulsar : MonoBehaviour
             {
                 case 0: 
                     Debug.Log("Terminado - Salte de escena"); 
+                    SceneManager.LoadScene("Scene2",LoadSceneMode.Single);
                 break;
                 case 1: 
                     img.sprite = spNumeros[0];
